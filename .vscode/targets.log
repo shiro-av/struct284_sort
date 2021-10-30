@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Oct 30 18:52:39 2021
+# Make data base, printed on Sat Oct 30 22:59:22 2021
 
 # Variables
 
@@ -215,7 +215,6 @@ PANEL_GDK_CORE_DEVICE_EVENTS = 0
 # automatic
 <F = $(notdir $<)
 # default
- 
 SUFFIXES := 
 # environment
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/admin
@@ -234,9 +233,9 @@ GDMSESSION = xfce
 
 # Directories
 
-# . (device 38, inode 21619): 5 files, no impossibilities.
+# . (device 38, inode 21619): 7 files, no impossibilities.
 
-# 5 files, no impossibilities in 1 directories.
+# 7 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -286,12 +285,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 13 / storage = 109 B / avg = 8 B
-# current buf: size = 8162 B / used = 109 B / count = 13 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 15 / storage = 130 B / avg = 8 B
+# current buf: size = 8162 B / used = 130 B / count = 15 / avg = 8 B
 
-# strcache performance: lookups = 16 / hit rate = 18%
+# strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
-# Load=13/8192=0%, Rehash=0, Collisions=0/16=0%
-# Finished Make data base on Sat Oct 30 18:52:39 2021
+# Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
+# Finished Make data base on Sat Oct 30 22:59:22 2021
 
  

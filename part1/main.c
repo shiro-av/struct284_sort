@@ -2,6 +2,7 @@
 #include "sort.h"
 
 int main(int argc, char *argv[]) {
-    test_int_rnd();
+    //test_int_rnd();
+    test_float_rnd();
     return 0;
 }

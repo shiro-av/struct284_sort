@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-c -Wall
-MKFLAGS=-Wall -o
+MKFLAGS=-Wall -lm -o
 
 bubble: functions.o bubblesort.o main.o
 	$(CC) main.o bubblesort.o functions.o $(MKFLAGS) bubble
