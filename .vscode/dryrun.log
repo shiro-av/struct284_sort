@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/admin/Рабочий стол/struct/Lab3'
+make: Leaving directory '/home/admin/Рабочий стол/struct/Lab3'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+ 
