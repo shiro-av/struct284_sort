@@ -40,7 +40,7 @@ float timedifference_msec(struct timeval t0, struct timeval t1) {
 void speed_test_int(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
     struct timeval t[4];
     gettimeofday(&t[0], 0);
-    const unsigned long max = 10000;
+    const unsigned long max = 100000;
     const int l=-100, r=100;
     array = calloc(max, sizeof(int));
     gettimeofday(&t[1], 0);
@@ -114,10 +114,36 @@ void test_string(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare
     }
     printf("\n\n");
     sort(str, len, sizeof(char*), compare_string);
-    //sort_t(str, len, sizeof(char*), compare_string);
+    //sort(str, len, sizeof(char*), cmpstringp);
     printf("Order of sorted array:\n");
     for(int i=0;i<len;i++) {
         printf("%d) %s (size: %ld)\n", i, str[i], strlen(str[i]));
     }
     printf("\n\n");
+}
+
+void print_size(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*)) {
+    printf("size *base = %ld\n", sizeof(base));
+    printf("nmemb = %ld | size = %ld\n", nmemb, sizeof(nmemb));
+    printf("size = %ld\n", size);
+    for(int i=0; i<nmemb-1;i++) {
+        printf("size base+%d*size = %ld | = %d\n", i, sizeof(base+i*size), *(int*)(base+i*size));
+        printf("size base+(%d+1)*size = %ld | = %d\n", i, sizeof(base+(i+1)*size), *(int*)(base+(i+1)*size));
+        printf("compare: %d\n", compare(base+i*size, base+(i+1)*size));
+    }
+}
+
+void test_print_size() {
+    int* arr;
+    
+    srand(time(NULL));
+    arr = calloc(10, sizeof(int));
+    for(int i=0;i<10;i++) {
+        arr[i] = rand() % MAX + (MIN);
+        
+    }
+    printf("\n\n");
+    print_size(arr, 10, sizeof(int), compare_int);
+    printf("\n");
+    free(arr);
 }

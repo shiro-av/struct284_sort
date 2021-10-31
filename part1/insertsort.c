@@ -1,21 +1,20 @@
 #include "sort.h"
-#define _a base+j*size
-#define _b base+(j+1)*size
+
 
 void insertsort(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*)) {
-    char *tmp, *sw;
-    int cnt=0, j=0;
-    for(int u=0;u<nmemb-1;u++)
-    for(int i=1; i<nmemb;i++) {
-        j=i;
-        tmp = calloc(sizeof(_a), sizeof(char));
-        memcpy(tmp, _a, size);
-        while((j>0) && (compare(base+(j-1)*size, _a)==1)) j--;
-        memcpy(tmp, _a, size);
-        memcpy(_a, _b, size);
-        memcpy(_b, tmp, size);
-        memcpy(tmp, _a, size);
-        cnt++;
-        
+    int j=0, k=0;
+    unsigned char *tmp;
+    tmp = calloc(size, sizeof(char));
+    for(int i=1;i<=nmemb-1;i++) {
+        k=i; j=i;
+        memcpy(tmp, base+k*size, size);
+        while((k>0) && (compare(base+i*size, base+(k-1)*size)==-1)) {
+            k--;
+        }
+        while(j-1>=k) {
+            memcpy(base+j*size, base+(j-1)*size, size);
+            j--;
+        }
+        memcpy(base+k*size, tmp, size);
     }
 }

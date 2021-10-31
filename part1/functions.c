@@ -30,3 +30,12 @@ int compare_string(const void *a, const void *b) {
     else if (strlen(str1) < strlen(str2)) return -1;
     return 0;
 }
+
+int cmpstringp(const void *p1, const void *p2)
+{
+     /* The actual arguments to this function are "pointers to
+        pointers to char", but strcmp(3) arguments are "pointers
+        to char", hence the following cast plus dereference */
+
+    return strcmp(*(const char **) p1, *(const char **) p2);
+}
