@@ -37,7 +37,7 @@ int compare_string(const void *a, const void *b) {
     return 0;
 }
 
-void test_int_rnd() {
+void test_int_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
     int* arr;
     
     srand(time(NULL));
@@ -48,8 +48,7 @@ void test_int_rnd() {
         printf("%d ", arr[i]);
     }
     printf("\n\n");
-    bubblesort(arr, n, sizeof(int), compare_int);
-    //sort_t(arr, n, sizeof(int), compare_int);
+    sort(arr, n, sizeof(int), compare_int);
     printf("Order of sorted array:\n");
     for(int i=0;i<n;i++) {
         printf("%d ", arr[i]);
@@ -58,7 +57,7 @@ void test_int_rnd() {
     free(arr);
 }
 
-void test_float_rnd() {
+void test_float_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
     float* arr;
     float rnd_tmp;
     srand(time(NULL));
@@ -70,7 +69,7 @@ void test_float_rnd() {
         printf("%g ", arr[i]);
     }
     printf("\n\n");
-    bubblesort(arr, n, sizeof(float), compare_float);
+    sort(arr, n, sizeof(float), compare_float);
     printf("Order of sorted array:\n");
     for(int i=0;i<n;i++) {
         printf("%g ", arr[i]);
@@ -79,7 +78,7 @@ void test_float_rnd() {
     free(arr);
 }
 
-void test_char_rnd() {
+void test_char_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
     char *arr;
     srand(time(NULL));
     arr = calloc(n, sizeof(char));
@@ -91,7 +90,7 @@ void test_char_rnd() {
         printf("%c ", arr[i]);
     }
     printf("\n\n");
-    bubblesort(arr, n, sizeof(char), compare_char);
+    sort(arr, n, sizeof(char), compare_char);
     printf("Order of sorted array:\n");
     for(int i=0;i<n;i++) {
         printf("%c ", arr[i]);
@@ -100,7 +99,7 @@ void test_char_rnd() {
     free(arr);
 }
 
-void test_string() {
+void test_string(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
     const char *str[] = {
         "a", "vbudsbv", "ab", "fkbnfjwenvoidhrfio ofierhio irejogvierj ioerjghgiush459830 ghiwuh", "abc",
         "asdfghjkjlkl", "fmnaijbnigtoufwe ibgibgio", "nguirtdhe iuhuihiurthg hiurtohg bigwsoig iuguierwso hg",
@@ -113,7 +112,7 @@ void test_string() {
         printf("%d) %s (size: %ld)\n", i, str[i], strlen(str[i]));
     }
     printf("\n\n");
-    bubblesort(str, len, sizeof(char*), compare_string);
+    sort(str, len, sizeof(char*), compare_string);
     //sort_t(str, len, sizeof(char*), compare_string);
     printf("Order of sorted array:\n");
     for(int i=0;i<len;i++) {

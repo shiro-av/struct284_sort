@@ -12,9 +12,9 @@ int compare_string(const void *a, const void *b);
 void bubblesort(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*));
 
 
-void test_int_rnd();
-void test_float_rnd();
-void test_char_rnd();
-void test_string();
+void test_int_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*)));
+void test_float_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*)));
+void test_char_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*)));
+void test_string(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*)));
 
 #endif
