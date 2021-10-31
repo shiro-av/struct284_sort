@@ -4,11 +4,14 @@
 #include <time.h>
 #include <string.h>
 #include <math.h>
+#include <sys/time.h>
 
 //for random array
 #define n 100
 #define MIN -500
 #define MAX 1000
+
+int *array;
 
 void test_int_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
     int* arr;
@@ -28,6 +31,30 @@ void test_int_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compar
     }
     printf("\n");
     free(arr);
+}
+
+float timedifference_msec(struct timeval t0, struct timeval t1) {
+    return (t1.tv_sec - t0.tv_sec) * 1000.0f + (t1.tv_usec - t0.tv_usec) / 1000.0f;
+}
+
+void speed_test_int(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
+    struct timeval t[4];
+    gettimeofday(&t[0], 0);
+    const unsigned long max = 10000;
+    const int l=-100, r=100;
+    array = calloc(max, sizeof(int));
+    gettimeofday(&t[1], 0);
+    for(unsigned long i=0; i<max;i++) {
+        array[i] = rand() % r + l;
+    }
+    
+    gettimeofday(&t[2], 0);
+    sort(array, max, sizeof(int), compare_int);
+    gettimeofday(&t[3], 0);
+    printf("Time make array: %g ms\n",timedifference_msec(t[0], t[1]));
+    printf("Time random: %g ms\n", timedifference_msec(t[1], t[2]));
+    printf("Program sorted in %g ms.\n", timedifference_msec(t[2], t[3]));
+    free(array);
 }
 
 void test_float_rnd(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare)(const void*, const void*))) {
@@ -76,7 +103,8 @@ void test_string(void(*sort)(void *base, size_t nmemb, size_t size, int(*compare
     const char *str[] = {
         "a", "vbudsbv", "ab", "fkbnfjwenvoidhrfio ofierhio irejogvierj ioerjghgiush459830 ghiwuh", "abc",
         "asdfghjkjlkl", "fmnaijbnigtoufwe ibgibgio", "nguirtdhe iuhuihiurthg hiurtohg bigwsoig iuguierwso hg",
-        "", "qwerty", "zxc", "qwe", "bndoj hjytiorn y;rt", ":q", "/bin/bash", "/usr/bin/env bash", "gcc -Wall"
+        "", "qwerty", "zxc", "qwe", "bndoj hjytiorn y;rt", ":q", "/bin/bash", "/usr/bin/env bash", "gcc -Wall",
+        "132", "gie5314543", "xdsl.shgpi.edu.ru", "fserwe5476876 wer", "asdasd", "asdsa", "erttrey", "tertyeye"
     };
     const int len = sizeof(str) / sizeof(char**);
     printf("Str size = %d\n", len);
