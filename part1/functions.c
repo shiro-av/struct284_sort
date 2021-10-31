@@ -29,6 +29,14 @@ int compare_char(const void *a, const void *b) {
     return 0;
 }
 
+int compare_string(const void *a, const void *b) {
+    #define str1 *(char**)a
+    #define str2 *(char**)b
+    if (strlen(str1) > strlen(str2)) return 1;
+    else if (strlen(str1) < strlen(str2)) return -1;
+    return 0;
+}
+
 void test_int_rnd() {
     int* arr;
     
@@ -89,4 +97,25 @@ void test_char_rnd() {
     }
     printf("\n");
     free(arr);
+}
+
+void test_string() {
+    const char *str[] = {
+        "a", "vbudsbv", "ab", "fkbnfjwenvoidhrfio ofierhio irejogvierj ioerjghgiush459830 ghiwuh", "abc",
+        "asdfghjkjlkl", "fmnaijbnigtoufwe ibgibgio", "nguirtdhe iuhuihiurthg hiurtohg bigwsoig iuguierwso hg",
+        "", "qwerty", "zxc", "qwe", "bndoj hjytiorn y;rt", ":q", "/bin/bash", "/usr/bin/env bash", "gcc -Wall"
+    };
+    const int len = sizeof(str) / sizeof(char**);
+    printf("Str size = %d\n", len);
+    printf("Src array:\n");
+    for(int i=0;i<len;i++) {
+        printf("%d) %s (size: %ld)\n", i, str[i], strlen(str[i]));
+    }
+    printf("\n\n");
+    bubblesort(str, len, sizeof(char*), compare_string);
+    printf("Order of sorted array:\n");
+    for(int i=0;i<len;i++) {
+        printf("%d) %s (size: %ld)\n", i, str[i], strlen(str[i]));
+    }
+    printf("\n\n");
 }
