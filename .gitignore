@@ -1,3 +1,5 @@
 *.o
 bubble
+insert
+quick
 .vscode
