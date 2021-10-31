@@ -49,6 +49,7 @@ void test_int_rnd() {
     }
     printf("\n\n");
     bubblesort(arr, n, sizeof(int), compare_int);
+    //sort_t(arr, n, sizeof(int), compare_int);
     printf("Order of sorted array:\n");
     for(int i=0;i<n;i++) {
         printf("%d ", arr[i]);
@@ -113,6 +114,7 @@ void test_string() {
     }
     printf("\n\n");
     bubblesort(str, len, sizeof(char*), compare_string);
+    //sort_t(str, len, sizeof(char*), compare_string);
     printf("Order of sorted array:\n");
     for(int i=0;i<len;i++) {
         printf("%d) %s (size: %ld)\n", i, str[i], strlen(str[i]));
