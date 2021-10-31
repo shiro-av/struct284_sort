@@ -23,6 +23,12 @@ int compare_float(const void *a, const void *b) {
     return 0;
 }
 
+int compare_char(const void *a, const void *b) {
+    if(*(char*)a > *(char*)b) return 1;
+    else if(*(char*)a < *(char*)b) return -1;
+    return 0;
+}
+
 void test_int_rnd() {
     int* arr;
     
@@ -40,6 +46,7 @@ void test_int_rnd() {
         printf("%d ", arr[i]);
     }
     printf("\n");
+    free(arr);
 }
 
 void test_float_rnd() {
@@ -60,4 +67,26 @@ void test_float_rnd() {
         printf("%g ", arr[i]);
     }
     printf("\n");
+    free(arr);
+}
+
+void test_char_rnd() {
+    char *arr;
+    srand(time(NULL));
+    arr = calloc(n, sizeof(char));
+    printf("src array:\n");
+    for(int i=0;i<n;i++) {
+        //arr[i] = rand() % 255 + (0);
+        arr[i] = rand() % 90 + 26;
+        //printf("%d = %c |",arr[i], arr[i]);
+        printf("%c ", arr[i]);
+    }
+    printf("\n\n");
+    bubblesort(arr, n, sizeof(char), compare_char);
+    printf("Order of sorted array:\n");
+    for(int i=0;i<n;i++) {
+        printf("%c ", arr[i]);
+    }
+    printf("\n");
+    free(arr);
 }
