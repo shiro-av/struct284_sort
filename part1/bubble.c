@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "sort.h"
 
+// Основной файл для работы с пузырьковой сортировкой
+
 int main(int argc, char *argv[]) {
     //bubble
     //test_int_rnd(bubblesort);
